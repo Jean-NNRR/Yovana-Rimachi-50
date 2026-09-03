@@ -9,8 +9,7 @@ const hero = document.querySelector('.hero');
 const manifesto = document.querySelector('.manifesto');
 const portraitScene = document.querySelector('.portrait-scene');
 const portraitFrame = document.getElementById('portraitFrame');
-const wordLeft = document.querySelector('.word-left');
-const wordRight = document.querySelector('.word-right');
+const wordCenter = document.querySelector('.word-center');
 const depthOne = document.querySelector('.depth-one');
 const depthTwo = document.querySelector('.depth-two');
 
@@ -126,8 +125,7 @@ function paintScroll() {
   if (!reducedMotion) {
     const scale = 0.86 + Math.sin(portraitProgress * Math.PI) * 0.16 + portraitProgress * 0.05;
     portraitFrame.style.transform = `translate(-50%,-50%) scale(${scale}) rotateY(${(portraitProgress - 0.5) * -9}deg)`;
-    wordLeft.style.transform = `translate3d(${portraitProgress * -80}px,0,${portraitProgress * 40}px)`;
-    wordRight.style.transform = `translate3d(${portraitProgress * 80}px,0,${portraitProgress * 40}px)`;
+    wordCenter.style.transform = `translate3d(-50%,${(portraitProgress - 0.5) * -12}px,${portraitProgress * 40}px) scale(${1 + portraitProgress * 0.03})`;
   }
   scrollTicking = false;
 }
