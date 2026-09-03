@@ -102,6 +102,11 @@ em{font-weight:500;color:var(--gold-light)}
 .detail-main{min-height:500px;background:#1a0a10;transform:translateZ(60px)}
 .card-index{position:absolute;right:24px;top:17px;font:500 82px/1 var(--serif);color:rgba(244,208,138,.055);transform:translateZ(20px)}
 .card-symbol{position:absolute;left:30px;top:32px;width:55px;height:55px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--gold-light);font-size:22px;transform:translateZ(38px)}
+.dress-icons{position:absolute!important;z-index:3!important;left:25px;top:26px;display:flex;gap:10px;transform:translateZ(42px)}
+.dress-icons span{display:flex;align-items:center;gap:7px;padding:7px 10px 7px 8px;border:1px solid rgba(255,221,157,.28);border-radius:999px;color:var(--gold-light);background:rgba(10,4,7,.56);backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.dress-icons svg{width:20px;height:20px;flex:none;fill:currentColor}
+.dress-icons span:nth-child(2) svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dress-icons b{font:500 8px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
 .detail-card p{margin:0 0 15px;color:var(--gold);font-size:9px;letter-spacing:.34em;text-transform:uppercase;transform:translateZ(36px)}
 .detail-card h3{margin:0;font:400 clamp(52px,4.7vw,76px)/.72 var(--script);letter-spacing:0;transform:translateZ(52px)}
 .detail-card small{margin-top:22px;color:rgba(255,247,236,.5);font-size:10px;line-height:1.6;letter-spacing:.08em;transform:translateZ(34px)}
@@ -160,6 +165,7 @@ em{font-weight:500;color:var(--gold-light)}
   .invitation{min-height:min(630px,89svh);padding:40px 26px}.invitation h1{font-size:clamp(54px,16vw,68px)}
 }
 @media(max-width:420px){.overline{font-size:8px}.hero-sub{font-size:12px}.portrait-frame{height:52vh}.detail-card{min-height:240px}.actions{margin-top:34px}.action strong{font-size:24px}}
+@media(max-width:420px){.dress-icons{left:20px;top:20px}.dress-icons span{padding:7px}.dress-icons b{display:none}.dress-icons svg{width:21px;height:21px}}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none;filter:none}.cursor-glow{display:none}.portrait-frame,.portrait-word,.manifesto-depth{will-change:auto}
