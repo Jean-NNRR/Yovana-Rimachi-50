@@ -1,1 +1,347 @@
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;const cv=document.getElementById('ambient'),cx=cv.getContext('2d');let dots=[],orbs=[],px=0,py=0,tx=0,ty=0,last=performance.now();const pal=[[229,153,173],[117,159,218],[99,205,219],[172,98,194],[245,218,163]];function size(){let d=Math.min(devicePixelRatio||1,1.5);cv.width=innerWidth*d;cv.height=innerHeight*d;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';cx.setTransform(d,0,0,d,0,0);dots=Array.from({length:innerWidth<700?38:60},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:.6+Math.random()*1.2,vx:(Math.random()-.5)*.02,vy:(Math.random()-.5)*.02,a:.18+Math.random()*.42,c:pal[Math.random()*pal.length|0]}));orbs=Array.from({length:innerWidth<700?6:10},(_,i)=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:28+Math.random()*45,vx:(Math.random()-.5)*.025,vy:(Math.random()-.5)*.02,a:.04+Math.random()*.055,c:pal[i%pal.length],z:.25+Math.random()*.6,p:Math.random()*6.28}))}function ambient(now){let dt=Math.min(30,now-last);last=now;px+=(tx-px)*.025;py+=(ty-py)*.025;cx.clearRect(0,0,innerWidth,innerHeight);orbs.forEach(o=>{if(!reduce){o.x+=o.vx*dt;o.y+=o.vy*dt}if(o.x<-100)o.x=innerWidth+100;if(o.x>innerWidth+100)o.x=-100;if(o.y<-100)o.y=innerHeight+100;if(o.y>innerHeight+100)o.y=-100;let [r,g,b]=o.c,R=o.r*(1+Math.sin(now*.0002+o.p)*.035),x=o.x+px*12*o.z,y=o.y+py*9*o.z,gr=cx.createRadialGradient(x-R*.2,y-R*.2,0,x,y,R);gr.addColorStop(0,`rgba(${r},${g},${b},${o.a*1.5})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);cx.fillStyle=gr;cx.beginPath();cx.arc(x,y,R,0,7);cx.fill()});dots.forEach(d=>{if(!reduce){d.x+=d.vx*dt;d.y+=d.vy*dt}if(d.x<0)d.x=innerWidth;if(d.x>innerWidth)d.x=0;if(d.y<0)d.y=innerHeight;if(d.y>innerHeight)d.y=0;let [r,g,b]=d.c;cx.fillStyle=`rgba(${r},${g},${b},${d.a})`;cx.beginPath();cx.arc(d.x+px*3,d.y+py*2,d.r,0,7);cx.fill()});requestAnimationFrame(ambient)}addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5)*2;ty=(e.clientY/innerHeight-.5)*2},{passive:true});addEventListener('resize',size,{passive:true});size();requestAnimationFrame(ambient);const opening=document.getElementById('opening'),invite=document.getElementById('invite'),openBtn=document.getElementById('openBtn'),hero=document.getElementById('hero');let opened=false;function openIt(){if(opened)return;opened=true;opening.classList.add('closed');document.body.style.overflow='';setTimeout(()=>hero.classList.add('loaded'),140)}document.body.style.overflow='hidden';opening.addEventListener('click',openIt);invite.addEventListener('click',openIt);openBtn.addEventListener('click',e=>{e.stopPropagation();openIt()});openBtn.addEventListener('pointerup',e=>{e.stopPropagation();openIt()});invite.addEventListener('pointerup',openIt);addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')openIt()});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.15});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));document.getElementById('maps').addEventListener('click',e=>e.preventDefault());document.querySelectorAll('.action.primary').forEach(a=>{a.addEventListener('pointerup',e=>{if(e.pointerType==='touch'){e.stopPropagation();setTimeout(()=>{location.href=a.href},0)}})});const stage=document.getElementById('stage'),fallback=stage.querySelector('.fallback');try{const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm');const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(40,1,.1,100);camera.position.set(0,.12,9.4);const r=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});r.setPixelRatio(Math.min(devicePixelRatio,1.7));r.setClearColor(0,0);r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.12;stage.appendChild(r.domElement);fallback.style.display='none';stage.classList.add('ready');const root=new THREE.Group();root.position.y=.72;scene.add(root);const gold=new THREE.MeshPhysicalMaterial({color:0xd9b36b,metalness:.92,roughness:.23,clearcoat:1,clearcoatRoughness:.12}),deep=new THREE.MeshPhysicalMaterial({color:0x684119,metalness:.88,roughness:.31,clearcoat:.7}),rim=new THREE.MeshPhysicalMaterial({color:0x9a6a30,metalness:.9,roughness:.26,clearcoat:.8});function coin(rad,depth,mat,z){let m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,depth,112),mat);m.rotation.x=Math.PI/2;m.position.z=z;root.add(m);return m}coin(2.25,.16,rim,-.22);coin(2.05,.32,gold,-.02);coin(1.8,.35,deep,.02);coin(1.66,.36,gold,.04);const nc=document.createElement('canvas');nc.width=1024;nc.height=512;const n=nc.getContext('2d'),gr=n.createLinearGradient(0,40,0,460);gr.addColorStop(0,'#fff0c9');gr.addColorStop(.5,'#eccb8a');gr.addColorStop(1,'#9b652b');n.fillStyle=gr;n.shadowColor='rgba(31,12,3,.3)';n.shadowBlur=15;n.font='600 300px "Cormorant Garamond",Georgia,serif';n.textAlign='center';n.textBaseline='middle';n.fillText('50',512,280);const tex=new THREE.CanvasTexture(nc),mat=new THREE.MeshBasicMaterial({map:tex,transparent:true}),plane=new THREE.Mesh(new THREE.PlaneGeometry(2.1,1.1),mat);plane.position.z=.255;root.add(plane);const o1=new THREE.Mesh(new THREE.TorusGeometry(2.63,.02,10,140),new THREE.MeshStandardMaterial({color:0xe7c77e,metalness:.7,roughness:.35,transparent:true,opacity:.28}));o1.rotation.set(1.05,.35,0);root.add(o1);const o2=new THREE.Mesh(new THREE.TorusGeometry(2.95,.015,10,140),new THREE.MeshStandardMaterial({color:0xa85e74,metalness:.3,roughness:.5,transparent:true,opacity:.18}));o2.rotation.set(.25,1.02,0);root.add(o2);const jewels=[];for(let i=0;i<10;i++){let j=new THREE.Mesh(new THREE.OctahedronGeometry(.1),new THREE.MeshPhysicalMaterial({color:0xf1d69b,metalness:.55,roughness:.15,clearcoat:1})),a=i/10*Math.PI*2,rr=2.35+(i%2)*.3;j.position.set(Math.cos(a)*rr,Math.sin(a)*rr*.55,i%2?.55:-.35);root.add(j);jewels.push(j)}scene.add(new THREE.AmbientLight(0xffe8d1,1.15));let key=new THREE.PointLight(0xffda91,42,20,2);key.position.set(3.8,4.2,5);scene.add(key);let side=new THREE.PointLight(0x8d3557,28,18,2);side.position.set(-4,-1,3);scene.add(side);let hoverX=0,hoverY=0,dragging=false,lastX=0,lastY=0,targetRX=0,targetRY=0,rx=0,ry=0,velX=0,velY=0;stage.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;velX=velY=0;stage.classList.add('dragging');stage.setPointerCapture?.(e.pointerId)});stage.addEventListener('pointermove',e=>{let b=stage.getBoundingClientRect();hoverX=(e.clientX-b.left)/b.width-.5;hoverY=(e.clientY-b.top)/b.height-.5;if(dragging){let dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;velY=dx*.0072;velX=dy*.0042;targetRY+=velY;targetRX=Math.max(-.48,Math.min(.48,targetRX+velX))}},{passive:true});function stopDrag(e){if(!dragging)return;dragging=false;stage.classList.remove('dragging');try{stage.releasePointerCapture?.(e.pointerId)}catch(_){}}stage.addEventListener('pointerup',stopDrag);stage.addEventListener('pointercancel',stopDrag);stage.addEventListener('pointerleave',()=>{if(!dragging){hoverX=0;hoverY=0}},{passive:true});function resize3(){let b=stage.getBoundingClientRect(),w=Math.max(1,b.width),h=Math.max(1,b.height);r.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<700?48:40;camera.position.set(0,.12,9.4);camera.updateProjectionMatrix();root.scale.setScalar(w<700?.76:1)}new ResizeObserver(resize3).observe(stage);resize3();let t0=performance.now();function render(t){let s=(t-t0)*.001;if(!reduce){if(!dragging){targetRY+=velY;targetRX+=velX;velY*=.925;velX*=.925;targetRX=Math.max(-.48,Math.min(.48,targetRX))}let hoverRY=dragging?0:hoverX*.18,hoverRX=dragging?0:-hoverY*.075;ry+=(targetRY+hoverRY-ry)*.085;rx+=(targetRX+hoverRX-rx)*.085;root.rotation.y=ry;root.rotation.x=rx;root.rotation.z=Math.sin(s*.35)*.012;root.position.y=.72+Math.sin(s*.8)*.045;o1.rotation.z=s*.06;o2.rotation.z=-s*.045;jewels.forEach((j,i)=>{j.rotation.x=s*(.3+i%3*.05);j.rotation.y=s*(.25+i%4*.04)})}r.render(scene,camera);requestAnimationFrame(render)}requestAnimationFrame(render)}catch(e){console.warn('3D fallback',e)}
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+const gateway = document.getElementById('gateway');
+const enterButton = document.getElementById('enterButton');
+const progressBar = document.getElementById('progressBar');
+const nav = document.querySelector('.nav');
+const cursorGlow = document.getElementById('cursorGlow');
+const hero = document.querySelector('.hero');
+const manifesto = document.querySelector('.manifesto');
+const portraitScene = document.querySelector('.portrait-scene');
+const portraitFrame = document.getElementById('portraitFrame');
+const wordLeft = document.querySelector('.word-left');
+const wordRight = document.querySelector('.word-right');
+const depthOne = document.querySelector('.depth-one');
+const depthTwo = document.querySelector('.depth-two');
+
+document.body.classList.add('locked');
+nav.style.opacity = '0';
+nav.style.transform = 'translateY(-18px)';
+
+let opened = false;
+function openInvitation() {
+  if (opened) return;
+  opened = true;
+  gateway.classList.add('opened');
+  gateway.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('locked');
+  nav.style.opacity = '1';
+  nav.style.transform = 'none';
+  document.querySelectorAll('.hero .reveal').forEach((el, index) => {
+    setTimeout(() => el.classList.add('in'), 450 + index * 170);
+  });
+}
+enterButton.addEventListener('click', openInvitation);
+gateway.addEventListener('click', event => {
+  if (event.target === gateway) openInvitation();
+});
+addEventListener('keydown', event => {
+  if (!opened && (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape')) openInvitation();
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const delay = Number(entry.target.dataset.delay || 0);
+    setTimeout(() => entry.target.classList.add('in'), delay);
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.14, rootMargin: '0px 0px -5% 0px' });
+document.querySelectorAll('.reveal:not(.hero .reveal)').forEach((el, index) => {
+  if (el.closest('.detail-stage')) el.dataset.delay = String((index % 3) * 120);
+  observer.observe(el);
+});
+
+let pointerX = innerWidth / 2;
+let pointerY = innerHeight / 2;
+let glowX = pointerX;
+let glowY = pointerY;
+addEventListener('pointermove', event => {
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+}, { passive: true });
+
+function animateGlow() {
+  glowX += (pointerX - glowX) * 0.12;
+  glowY += (pointerY - glowY) * 0.12;
+  cursorGlow.style.transform = `translate3d(${glowX - 170}px,${glowY - 170}px,0)`;
+  requestAnimationFrame(animateGlow);
+}
+if (!reducedMotion && matchMedia('(pointer:fine)').matches) animateGlow();
+
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('pointermove', event => {
+    if (reducedMotion || !matchMedia('(pointer:fine)').matches) return;
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    card.style.setProperty('--mx', `${x * 100}%`);
+    card.style.setProperty('--my', `${y * 100}%`);
+    const lift = card.classList.contains('detail-main') ? 60 : 18;
+    card.style.transform = `perspective(1000px) translateZ(${lift}px) rotateX(${(0.5 - y) * 12}deg) rotateY(${(x - 0.5) * 14}deg)`;
+  });
+  card.addEventListener('pointerleave', () => {
+    card.style.transform = card.classList.contains('detail-main') ? 'translateZ(60px)' : '';
+  });
+});
+
+document.querySelectorAll('.magnetic').forEach(button => {
+  button.addEventListener('pointermove', event => {
+    if (reducedMotion || !matchMedia('(pointer:fine)').matches) return;
+    const rect = button.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    button.style.transform = `translate3d(${x * 0.055}px,${y * 0.08 - 5}px,0)`;
+  });
+  button.addEventListener('pointerleave', () => button.style.transform = '');
+});
+
+let heroProgress = 0;
+let scrollTicking = false;
+function paintScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+
+  const heroRect = hero.getBoundingClientRect();
+  heroProgress = clamp(-heroRect.top / Math.max(1, hero.offsetHeight - innerHeight));
+  const heroCopy = document.querySelector('.hero-copy');
+  if (!reducedMotion) {
+    heroCopy.style.transform = `translate3d(0,${(innerWidth < 800 ? 19 : 14) - heroProgress * 22}vh,0) scale(${1 - heroProgress * 0.09})`;
+    heroCopy.style.opacity = String(1 - heroProgress * 1.25);
+  }
+
+  const manifestoRect = manifesto.getBoundingClientRect();
+  const manifestoProgress = clamp((innerHeight - manifestoRect.top) / (innerHeight + manifestoRect.height));
+  if (!reducedMotion) {
+    depthOne.style.transform = `translate3d(${manifestoProgress * 100 - 45}px,${manifestoProgress * 80}px,0) rotate(${-14 + manifestoProgress * 8}deg)`;
+    depthTwo.style.transform = `translate3d(${45 - manifestoProgress * 100}px,${-manifestoProgress * 60}px,0) rotate(${13 - manifestoProgress * 7}deg)`;
+  }
+
+  const portraitRect = portraitScene.getBoundingClientRect();
+  const portraitProgress = clamp(-portraitRect.top / Math.max(1, portraitScene.offsetHeight - innerHeight));
+  if (!reducedMotion) {
+    const scale = 0.86 + Math.sin(portraitProgress * Math.PI) * 0.16 + portraitProgress * 0.05;
+    portraitFrame.style.transform = `translate(-50%,-50%) scale(${scale}) rotateY(${(portraitProgress - 0.5) * -9}deg)`;
+    wordLeft.style.transform = `translate3d(${portraitProgress * -80}px,0,${portraitProgress * 40}px)`;
+    wordRight.style.transform = `translate3d(${portraitProgress * 80}px,0,${portraitProgress * 40}px)`;
+  }
+  scrollTicking = false;
+}
+function requestScrollPaint() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(paintScroll);
+}
+addEventListener('scroll', requestScrollPaint, { passive: true });
+addEventListener('resize', requestScrollPaint, { passive: true });
+paintScroll();
+
+async function createThreeScene() {
+  const canvas = document.getElementById('stage');
+  try {
+    const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.7));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x090406, 0.045);
+    const camera = new THREE.PerspectiveCamera(37, 1, 0.1, 100);
+    camera.position.set(0, 0.2, 10.2);
+
+    const sculpture = new THREE.Group();
+    sculpture.position.y = -0.25;
+    scene.add(sculpture);
+
+    const edgeMaterial = new THREE.MeshPhysicalMaterial({ color: 0x7e4818, metalness: 0.95, roughness: 0.23, clearcoat: 1 });
+    const goldMaterial = new THREE.MeshPhysicalMaterial({ color: 0xe0b15d, metalness: 0.9, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.1 });
+    const darkGold = new THREE.MeshPhysicalMaterial({ color: 0x3f1f0c, metalness: 0.88, roughness: 0.3, clearcoat: 0.7 });
+
+    const coinBack = new THREE.Mesh(new THREE.CylinderGeometry(2.35, 2.35, 0.44, 128), edgeMaterial);
+    coinBack.rotation.x = Math.PI / 2;
+    coinBack.position.z = -0.1;
+    sculpture.add(coinBack);
+    const coinFace = new THREE.Mesh(new THREE.CylinderGeometry(2.13, 2.13, 0.48, 128), goldMaterial);
+    coinFace.rotation.x = Math.PI / 2;
+    coinFace.position.z = 0.05;
+    sculpture.add(coinFace);
+    const inset = new THREE.Mesh(new THREE.CylinderGeometry(1.82, 1.82, 0.5, 128), darkGold);
+    inset.rotation.x = Math.PI / 2;
+    inset.position.z = 0.09;
+    sculpture.add(inset);
+
+    const textCanvas = document.createElement('canvas');
+    textCanvas.width = 1024;
+    textCanvas.height = 1024;
+    const context = textCanvas.getContext('2d');
+    const gradient = context.createLinearGradient(0, 170, 0, 800);
+    gradient.addColorStop(0, '#fff2c8');
+    gradient.addColorStop(0.48, '#e5bd71');
+    gradient.addColorStop(1, '#8a5427');
+    context.fillStyle = gradient;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.shadowColor = 'rgba(0,0,0,.48)';
+    context.shadowBlur = 30;
+    context.font = '600 520px Georgia, serif';
+    context.fillText('50', 512, 525);
+    const textTexture = new THREE.CanvasTexture(textCanvas);
+    textTexture.colorSpace = THREE.SRGBColorSpace;
+    const number = new THREE.Mesh(
+      new THREE.PlaneGeometry(3.5, 3.5),
+      new THREE.MeshBasicMaterial({ map: textTexture, transparent: true, depthWrite: false })
+    );
+    number.position.z = 0.38;
+    sculpture.add(number);
+
+    const rings = [];
+    [
+      [2.82, 0.026, 0xe9c67b, 0.45, [1.18, 0.2, 0.1]],
+      [3.2, 0.018, 0x9e3558, 0.4, [0.25, 1.02, 0.4]],
+      [3.55, 0.012, 0xffdf9a, 0.24, [0.65, 0.55, 1.1]]
+    ].forEach(([radius, tube, color, opacity, rotation]) => {
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, tube, 12, 180),
+        new THREE.MeshStandardMaterial({ color, metalness: 0.8, roughness: 0.25, transparent: true, opacity })
+      );
+      ring.rotation.set(...rotation);
+      sculpture.add(ring);
+      rings.push(ring);
+    });
+
+    const gems = [];
+    for (let index = 0; index < 14; index++) {
+      const gem = new THREE.Mesh(
+        new THREE.OctahedronGeometry(index % 4 === 0 ? 0.115 : 0.07),
+        new THREE.MeshPhysicalMaterial({ color: index % 3 ? 0xf6dca0 : 0xa93c61, metalness: 0.55, roughness: 0.12, clearcoat: 1 })
+      );
+      const angle = index / 14 * Math.PI * 2;
+      const radius = 2.6 + (index % 2) * 0.48;
+      gem.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.7, (index % 3 - 1) * 0.7);
+      sculpture.add(gem);
+      gems.push(gem);
+    }
+
+    const particleGeometry = new THREE.BufferGeometry();
+    const particleCount = innerWidth < 800 ? 260 : 520;
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 13;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 11;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particles = new THREE.Points(
+      particleGeometry,
+      new THREE.PointsMaterial({ color: 0xf5d38d, size: 0.025, transparent: true, opacity: 0.55, sizeAttenuation: true })
+    );
+    scene.add(particles);
+
+    scene.add(new THREE.AmbientLight(0xffe4c0, 1.1));
+    const keyLight = new THREE.PointLight(0xffcf7f, 55, 24, 1.8);
+    keyLight.position.set(4, 5, 6);
+    scene.add(keyLight);
+    const wineLight = new THREE.PointLight(0xa52f56, 45, 20, 1.7);
+    wineLight.position.set(-4, -2, 4);
+    scene.add(wineLight);
+    const rimLight = new THREE.PointLight(0x7caed8, 18, 18, 2);
+    rimLight.position.set(0, 2, -5);
+    scene.add(rimLight);
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let dragging = false;
+    let lastPointerX = 0;
+    let spinVelocity = 0;
+    canvas.addEventListener('pointermove', event => {
+      const rect = canvas.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 0.55;
+      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 0.26;
+      if (dragging) {
+        spinVelocity = (event.clientX - lastPointerX) * 0.008;
+        sculpture.rotation.y += spinVelocity;
+        lastPointerX = event.clientX;
+      }
+    }, { passive: true });
+    canvas.addEventListener('pointerdown', event => {
+      dragging = true;
+      lastPointerX = event.clientX;
+      canvas.setPointerCapture?.(event.pointerId);
+    });
+    canvas.addEventListener('pointerup', event => {
+      dragging = false;
+      canvas.releasePointerCapture?.(event.pointerId);
+    });
+    canvas.addEventListener('pointercancel', () => dragging = false);
+
+    function resize() {
+      const width = Math.max(1, canvas.clientWidth);
+      const height = Math.max(1, canvas.clientHeight);
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.fov = width < 800 ? 48 : 37;
+      camera.updateProjectionMatrix();
+      sculpture.scale.setScalar(width < 800 ? 0.73 : 1);
+    }
+    new ResizeObserver(resize).observe(canvas);
+    resize();
+
+    const start = performance.now();
+    function render(time) {
+      const seconds = (time - start) * 0.001;
+      if (!reducedMotion) {
+        currentX += (targetX - currentX) * 0.04;
+        currentY += (targetY - currentY) * 0.04;
+        if (!dragging) {
+          sculpture.rotation.y += spinVelocity;
+          spinVelocity *= 0.94;
+        }
+        sculpture.rotation.y += 0.0016;
+        sculpture.rotation.x += ((-currentY + heroProgress * 0.22) - sculpture.rotation.x) * 0.035;
+        sculpture.rotation.z = Math.sin(seconds * 0.4) * 0.025 + heroProgress * 0.15;
+        sculpture.position.y = -0.2 + Math.sin(seconds * 0.8) * 0.06 - heroProgress * 0.55;
+        sculpture.scale.multiplyScalar(1);
+        rings[0].rotation.z = seconds * 0.08;
+        rings[1].rotation.z = -seconds * 0.06;
+        rings[2].rotation.y = seconds * 0.04;
+        gems.forEach((gem, index) => {
+          gem.rotation.x = seconds * (0.4 + index * 0.01);
+          gem.rotation.y = seconds * (0.28 + index * 0.012);
+        });
+        particles.rotation.y = seconds * 0.008;
+        camera.position.z = 10.2 - heroProgress * 2.1;
+        camera.position.x = currentX * -0.7;
+        camera.position.y = 0.2 + currentY * 0.4 + heroProgress * 0.45;
+      }
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+  } catch (error) {
+    const context = canvas.getContext('2d');
+    const ratio = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * ratio;
+    canvas.height = innerHeight * ratio;
+    context.scale(ratio, ratio);
+    const gradient = context.createRadialGradient(innerWidth / 2, innerHeight * 0.42, 10, innerWidth / 2, innerHeight * 0.42, Math.min(innerWidth, innerHeight) * 0.34);
+    gradient.addColorStop(0, '#ffe6a8');
+    gradient.addColorStop(0.36, '#d0a054');
+    gradient.addColorStop(0.7, '#5d2c16');
+    gradient.addColorStop(1, 'rgba(20,8,11,0)');
+    context.fillStyle = gradient;
+    context.beginPath();
+    context.arc(innerWidth / 2, innerHeight * 0.42, Math.min(innerWidth, innerHeight) * 0.27, 0, Math.PI * 2);
+    context.fill();
+    context.fillStyle = '#fff0c0';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.font = `600 ${Math.min(innerWidth * 0.32, 260)}px Georgia,serif`;
+    context.fillText('50', innerWidth / 2, innerHeight * 0.42);
+  }
+}
+createThreeScene();
