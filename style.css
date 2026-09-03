@@ -119,7 +119,7 @@ em{font-weight:500;color:var(--gold-light)}
 .halo-a{width:min(70vw,930px);height:min(70vw,930px);transform:translate(-50%,-50%) rotateX(66deg);box-shadow:0 0 100px rgba(118,30,56,.18)}
 .halo-b{width:min(52vw,680px);height:min(74vw,970px);transform:translate(-50%,-50%) rotate(48deg)}
 .portrait-word{position:absolute;z-index:2;top:43%;font:500 clamp(120px,21vw,330px)/1 var(--serif);color:transparent;-webkit-text-stroke:1px rgba(255,226,168,.22);letter-spacing:-.08em;will-change:transform}
-.word-left{right:53%}.word-right{left:51%}
+.word-left{right:58%}.word-right{left:40%}
 .portrait-caption{position:absolute;z-index:8;left:50%;bottom:5%;width:min(1000px,90vw);transform:translateX(-50%);text-align:center;text-shadow:0 12px 35px #000}
 .portrait-caption h2{margin-bottom:0;font-size:clamp(44px,6vw,80px)}
 @keyframes portraitShine{0%,69%,100%{transform:translateX(-60%)}84%{transform:translateX(60%)}}
@@ -162,7 +162,7 @@ em{font-weight:500;color:var(--gold-light)}
   .scroll-cue{left:18px;bottom:22px}.scroll-cue span{display:none}.scene-number{right:18px;bottom:22px}
   .manifesto{padding:120px 20px}.manifesto:before{inset:5% 14px}.manifesto h2,.details h2,.finale h2{font-size:clamp(50px,15vw,76px)}.manifesto-text{font-size:13px;line-height:1.85}.manifesto-depth{font-size:66vw}.chapter-line{grid-template-columns:auto 1fr auto;gap:12px}.chapter-line i:nth-of-type(2),.chapter-line span:last-child{display:none}
   .details{padding:115px 18px 120px}.details-head{margin-bottom:54px}.detail-stage{grid-template-columns:1fr;gap:14px;perspective:none}.detail-card,.detail-main{min-height:260px;padding:25px;transform:none}.detail-card h3{font-size:51px}.card-symbol{left:auto;right:24px;top:23px}.card-index{right:18px;top:auto;bottom:-8px;font-size:100px}
-  .portrait-scene{height:165vh}.portrait-frame{width:min(72vw,380px);height:min(58vh,520px);top:44%}.portrait-word{top:38%;font-size:34vw}.word-left{right:50%}.word-right{left:48%}.portrait-caption{bottom:8%}.portrait-caption h2{font-size:clamp(41px,12vw,60px)}.halo-a{width:125vw;height:125vw}.halo-b{width:92vw;height:130vw}
+  .portrait-scene{height:165vh}.portrait-frame{width:min(72vw,380px);height:min(58vh,520px);top:44%}.portrait-word{top:38%;font-size:34vw}.word-left{right:60%}.word-right{left:38%}.portrait-caption{bottom:8%}.portrait-caption h2{font-size:clamp(41px,12vw,60px)}.halo-a{width:125vw;height:125vw}.halo-b{width:92vw;height:130vw}
   .actions{grid-template-columns:1fr}.action{min-height:112px}.finale{padding:120px 18px}.ring-one{width:118vw;height:118vw}.ring-two{width:85vw;height:130vw}.finale-content>p:not(.overline){font-size:13px}
   .invitation{min-height:min(630px,89svh);padding:40px 26px}.invitation h1{font-size:clamp(54px,16vw,68px)}
 }
