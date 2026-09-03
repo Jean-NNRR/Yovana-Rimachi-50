@@ -77,11 +77,15 @@ document.querySelectorAll('[data-tilt]').forEach(card => {
     const y = (event.clientY - rect.top) / rect.height;
     card.style.setProperty('--mx', `${x * 100}%`);
     card.style.setProperty('--my', `${y * 100}%`);
+    const media = card.querySelector('.card-media img');
+    if (media) media.style.transform = `scale(1.14) translate3d(${(0.5 - x) * 4}%,${(0.5 - y) * 4}%,0)`;
     const lift = card.classList.contains('detail-main') ? 60 : 18;
     card.style.transform = `perspective(1000px) translateZ(${lift}px) rotateX(${(0.5 - y) * 12}deg) rotateY(${(x - 0.5) * 14}deg)`;
   });
   card.addEventListener('pointerleave', () => {
     card.style.transform = card.classList.contains('detail-main') ? 'translateZ(60px)' : '';
+    const media = card.querySelector('.card-media img');
+    if (media) media.style.transform = '';
   });
 });
 
