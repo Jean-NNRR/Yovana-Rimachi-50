@@ -1,0 +1,138 @@
+:root{
+  --night:#5f481f;
+  --wine:#8a6728;
+  --wine-bright:#c89b42;
+  --cream:#fffaf0;
+  --muted:#ead9b8;
+  --gold:#e2b650;
+  --gold-light:#ffe7a0;
+  --line:rgba(255,225,157,.34);
+}
+
+html,
+body{background:#5f481f}
+
+::selection{color:#4a3515;background:var(--gold-light)}
+
+.cursor-glow{
+  background:radial-gradient(circle,rgba(255,220,137,.27),rgba(210,160,65,.14) 40%,transparent 72%);
+}
+
+.scroll-progress span{
+  background:linear-gradient(90deg,#b88936,var(--gold-light));
+}
+
+.gateway{
+  background:#634a1f;
+}
+
+.gate{
+  background:linear-gradient(105deg,#705323,#a47a32 50%,#5f471e);
+}
+
+.gate-right{
+  background:linear-gradient(75deg,#705323,#a47a32 50%,#5f471e);
+}
+
+.gate:after{
+  box-shadow:inset 0 0 120px rgba(76,52,15,.45);
+}
+
+.invitation{
+  background:linear-gradient(145deg,rgba(255,247,220,.13),rgba(204,153,62,.18));
+  box-shadow:0 45px 130px rgba(65,44,12,.48);
+}
+
+.hero{
+  background:radial-gradient(ellipse at 50% 40%,#b38a3c 0,#816027 38%,#5c451e 76%);
+}
+
+.hero-aura{
+  background:radial-gradient(circle,rgba(255,226,154,.25),rgba(207,158,66,.18) 36%,transparent 70%);
+}
+
+.manifesto{
+  background:radial-gradient(circle at 30% 60%,rgba(238,193,104,.18),transparent 35%),linear-gradient(180deg,#60491f,#806027 54%,#5b451d);
+}
+
+.depth-two{
+  -webkit-text-stroke-color:rgba(255,220,145,.16);
+}
+
+.details{
+  background:radial-gradient(circle at 50% 55%,rgba(240,197,111,.20),transparent 40%),#624a20;
+}
+
+.detail-card{
+  background:#745624;
+  box-shadow:0 28px 70px rgba(76,52,16,.35),inset 0 1px rgba(255,255,255,.08);
+}
+
+.detail-card:before{
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,225,159,.21),transparent 32%),linear-gradient(180deg,rgba(75,53,18,.04) 0%,rgba(75,53,18,.18) 42%,rgba(65,45,15,.74) 90%);
+}
+
+.card-media{
+  background:#765823;
+}
+
+.card-media img{
+  opacity:.74;
+  filter:saturate(.88) sepia(.12) contrast(1.04) brightness(.95);
+}
+
+.detail-card:hover .card-media img{
+  opacity:.84;
+  filter:saturate(.98) sepia(.08) contrast(1.04) brightness(1);
+}
+
+.detail-card:hover{
+  box-shadow:0 42px 95px rgba(72,49,13,.40),0 0 48px rgba(255,216,132,.15);
+}
+
+.detail-main{
+  background:#806027;
+}
+
+.dress-icons span{
+  color:#fff0be;
+  background:rgba(86,61,20,.68);
+  border-color:rgba(255,229,171,.45);
+}
+
+.portrait-scene{
+  background:linear-gradient(180deg,#60491f,#87652a 45%,#5c451d);
+}
+
+.portrait-frame{
+  background:#806027;
+  box-shadow:0 45px 105px rgba(72,49,13,.42),0 0 0 12px rgba(255,226,159,.035);
+}
+
+.portrait-shade{
+  background:linear-gradient(180deg,transparent 52%,rgba(69,48,15,.56));
+}
+
+.halo-a{
+  box-shadow:0 0 100px rgba(255,220,144,.16);
+}
+
+.finale{
+  background:radial-gradient(circle at 50% 45%,#b0873a 0,#7c5d26 38%,#58421c 74%);
+}
+
+.action-primary{
+  color:#4a3412;
+  background:linear-gradient(135deg,#dfad4d,#ffe5a0);
+}
+
+.action-secondary{
+  background:rgba(255,248,223,.08);
+}
+
+@media(max-width:420px){
+  .dress-icons{left:16px;right:16px;top:18px;gap:7px;flex-wrap:wrap}
+  .dress-icons span{padding:7px 9px}
+  .dress-icons b{display:block!important;font-size:7px;letter-spacing:.08em}
+  .dress-icons svg{width:20px;height:20px}
+}
