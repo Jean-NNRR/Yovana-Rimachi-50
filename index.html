@@ -1,158 +1,46 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#8a6728">
-  <meta name="description" content="Invitación a la celebración de los 50 años de Yovana Rimachi · sábado 7 de noviembre, 7:30 p. m., Espejo Luna. Vestimenta elegante.">
-  <title>Yovana Rimachi · 50 años</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Italianno&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20260903-dress-icons">
-  <link rel="stylesheet" href="./gold-theme.css?v=20260903-gold">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#19140f"><meta name="description" content="Celebremos los 50 años de Yovana Rimachi Jimenez. Sábado 7 de noviembre de 2026, 7:30 p. m. · Espejo Luna. Abre tu invitación.">
+<meta property="og:title" content="Yovana · Una noche para celebrar 50 años"><meta property="og:description" content="Sábado 7 de noviembre · 7:30 p. m. · Espejo Luna. Una invitación especial para ti.">
+<title>Yovana Rimachi Jimenez · Mis 50 años</title>
+<link rel="stylesheet" href="./assets/fonts.css?v=20260909">
+<link rel="stylesheet" href="./cinematic.css?v=20260909-film1"><script defer src="./photo-loader.js?v=20260903-3d"></script><script defer src="./cinematic.js?v=20260909-film1"></script>
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
-
-  <div class="gateway" id="gateway" role="dialog" aria-modal="true" aria-labelledby="gatewayTitle">
-    <div class="gate gate-left" aria-hidden="true"><span></span></div>
-    <div class="gate gate-right" aria-hidden="true"><span></span></div>
-    <div class="invitation" id="invitation">
-      <div class="invitation-light" aria-hidden="true"></div>
-      <div class="monogram" aria-hidden="true">Y</div>
-      <p class="overline">Una noche inolvidable</p>
-      <h1 id="gatewayTitle">Yovana<br><em>celebra 50</em></h1>
-      <div class="invite-rule"><span>07</span><i></i><span>11</span></div>
-      <p class="invite-copy">Hay momentos que merecen celebrarse para siempre. Queremos vivir este contigo.</p>
-      <button class="enter-button" id="enterButton" type="button">
-        <span>Entrar a la celebración</span><b aria-hidden="true">→</b>
-      </button>
-      <small>Toca para abrir la invitación</small>
-    </div>
-  </div>
-
-  <header class="nav" aria-label="Navegación principal">
-    <div class="nav-date"><span>07 · 11 · 2026</span><i></i><span>7:30 P. M.</span></div>
-    <a class="nav-rsvp" href="#confirmar">Confirmar</a>
-  </header>
-
-  <main>
-    <section class="hero scene" id="inicio" data-scene="01">
-      <div class="hero-sticky">
-        <canvas id="stage" aria-label="Escultura dorada interactiva del número 50"></canvas>
-        <div class="hero-aura" aria-hidden="true"></div>
-        <div class="hero-orbit orbit-a" aria-hidden="true"></div>
-        <div class="hero-orbit orbit-b" aria-hidden="true"></div>
-        <div class="hero-copy">
-          <p class="overline reveal">Sábado 7 de noviembre · Lima</p>
-          <h2 class="reveal">Yovana<br><em>Rimachi</em></h2>
-          <p class="hero-sub reveal">Cincuenta años de historias.<br>Una noche para crear recuerdos nuevos.</p>
-        </div>
-        <div class="scroll-cue" aria-hidden="true"><span>Descubre la invitación</span><i></i></div>
-      </div>
-    </section>
-
-    <section class="manifesto scene" id="celebracion" data-scene="02">
-      <div class="manifesto-depth depth-one" aria-hidden="true">50</div>
-      <div class="manifesto-depth depth-two" aria-hidden="true">50</div>
-      <div class="manifesto-content">
-        <p class="overline reveal">La celebración</p>
-        <h2 class="reveal">Una vida llena de<br><em>historias hermosas.</em></h2>
-        <p class="manifesto-text reveal">50 años de momentos, aprendizajes, risas, cariño y personas que dejaron huella. Esta noche no solo celebramos una fecha: celebramos cada momento que nos trajo hasta aquí.</p>
-        <div class="chapter-line reveal"><span>1976</span><i></i><b>50 vueltas al sol</b><i></i><span>2026</span></div>
-      </div>
-    </section>
-
-    <section class="details scene" id="detalles" data-scene="03">
-      <div class="details-head">
-        <p class="overline reveal">Guarda la fecha</p>
-        <h2 class="reveal">Todo listo para<br><em>una gran noche.</em></h2>
-      </div>
-      <div class="detail-stage">
-        <article class="detail-card tilt reveal" data-tilt>
-          <div class="card-media" aria-hidden="true"><img src="./assets/cards/date.webp" alt="" loading="lazy" decoding="async"></div>
-          <span class="card-index">01</span>
-          <div class="card-symbol" aria-hidden="true">◇</div>
-          <p>Fecha</p>
-          <h3>Sábado 7 de<br>noviembre</h3>
-          <small>2026</small>
-        </article>
-        <article class="detail-card detail-main tilt reveal" data-tilt>
-          <div class="card-media" aria-hidden="true"><img src="./assets/cards/time.webp" alt="" loading="lazy" decoding="async"></div>
-          <span class="card-index">02</span>
-          <div class="card-symbol" aria-hidden="true">◷</div>
-          <p>Hora</p>
-          <h3>7:30<br>p. m.</h3>
-          <small>Te esperamos puntual</small>
-        </article>
-        <article class="detail-card tilt reveal" data-tilt>
-          <div class="card-media" aria-hidden="true"><img src="./assets/cards/venue.webp" alt="" loading="lazy" decoding="async"></div>
-          <span class="card-index">03</span>
-          <div class="card-symbol" aria-hidden="true">⌖</div>
-          <p>Recepción</p>
-          <h3>Espejo<br>Luna</h3>
-          <small>Av. Gran Chimú 654 · 2.º nivel</small>
-        </article>
-        <article class="detail-card tilt reveal" data-tilt>
-          <div class="card-media" aria-hidden="true"><img src="./assets/cards/dress.webp" alt="" loading="lazy" decoding="async"></div>
-          <span class="card-index">04</span>
-          <div class="dress-icons" aria-label="Mujer: taco elegante. Hombre: corbata.">
-            <span>
-              <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M231 156.19 180 144.7 69.66 34.34a8 8 0 0 0-11.56.26C36.11 58.64 24 89 24 120v72a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-48.94c2.49 1.45 4.94 3 7.34 4.64a112.45 112.45 0 0 1 40.55 50.39A15.9 15.9 0 0 0 150.72 208H240a16 16 0 0 0 16-16v-4.73A31.72 31.72 0 0 0 231 156.19ZM72 192H40v-63.71a110.88 110.88 0 0 1 32 7.12Zm168 0h-89.32a128.36 128.36 0 0 0-46.27-57.46 126.9 126.9 0 0 0-64.12-22.26 110.67 110.67 0 0 1 24.17-60.5l105.88 105.88a8 8 0 0 0 3.9 2.14l53.24 12A15.81 15.81 0 0 1 240 187.31Z"/></svg>
-              <b>Mujer</b>
-            </span>
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22l4-4-2.5-11 .993-2.649A1 1 0 0 0 13.557 3h-3.114a1 1 0 0 0-.936 1.351L10.5 7 8 18l4 4"/><path d="M10.5 7h3l5 5.5"/></svg>
-              <b>Hombre</b>
-            </span>
-          </div>
-          <p>Vestimenta</p>
-          <h3>Elegante</h3>
-          <small>Una noche especial merece tu mejor estilo</small>
-        </article>
-      </div>
-    </section>
-
-    <section class="portrait-scene scene" id="yovana" data-scene="04">
-      <div class="portrait-sticky">
-        <div class="portrait-halo halo-a" aria-hidden="true"></div>
-        <div class="portrait-halo halo-b" aria-hidden="true"></div>
-        <div class="portrait-frame" id="portraitFrame">
-          <img id="yovanaPortrait" alt="Retrato de Yovana Rimachi" width="520" height="680" decoding="async">
-          <div class="portrait-shade" aria-hidden="true"></div>
-        </div>
-        <div class="portrait-word word-center" aria-hidden="true">YOVANA</div>
-        <div class="portrait-caption">
-          <p class="overline">La protagonista</p>
-          <h2>Una noche para celebrar<br><em>a Yovana.</em></h2>
-        </div>
-      </div>
-    </section>
-
-    <section class="finale scene" id="confirmar" data-scene="05">
-      <div class="finale-rays" aria-hidden="true"></div>
-      <div class="finale-ring ring-one" aria-hidden="true"></div>
-      <div class="finale-ring ring-two" aria-hidden="true"></div>
-      <div class="finale-content reveal">
-        <p class="overline">Nos encantará verte</p>
-        <h2>Haz que esta noche<br><em>también lleve tu historia.</em></h2>
-        <p>Confirma tu asistencia y acompáñanos a celebrar los 50 años de Yovana.</p>
-        <div class="actions">
-          <a class="action action-primary magnetic" href="https://wa.me/51992226504?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20los%2050%20a%C3%B1os%20de%20Yovana%20Rimachi%20%F0%9F%A5%82%E2%9C%A8" target="_blank" rel="noopener">
-            <span><small>Por WhatsApp</small><strong>Confirmar asistencia</strong></span><b aria-hidden="true">↗</b>
-          </a>
-          <a class="action action-secondary magnetic" href="https://maps.app.goo.gl/vcutVFqzYCKzsUWMA" target="_blank" rel="noopener">
-            <span><small>Recepción · Espejo Luna</small><strong>Ver ubicación</strong></span><b aria-hidden="true">↗</b>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="./photo-loader.js?v=20260903-3d"></script>
-  <script type="module" src="./script.js?v=20260903-dress-icons"></script>
-</body>
-</html>
+<div class="theatre" id="theatre" data-current="cover">
+<div class="ambience" aria-hidden="true"><div class="silk silk-left"></div><div class="silk silk-right"></div><div class="dust" id="dust"></div></div>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<header class="masthead"><span class="signature">Y.</span><span class="masthead-date">7 de noviembre de 2026</span><button id="skip" class="text-button">Ver detalles</button></header>
+<main id="film" aria-label="Invitación a los 50 años de Yovana">
+<section class="scene cover active" id="cover" aria-labelledby="cover-title"><div class="scene-content cover-content">
+<p class="personal-note">Hay una noche reservada para ti</p>
+<div class="envelope" aria-hidden="true"><div class="letter"><span>Con mucho cariño</span><b>Yovana</b></div><div class="envelope-back"></div><div class="envelope-front"></div><div class="envelope-flap"></div><div class="seal"><span>Y</span></div></div>
+<h1 id="cover-title">Una invitación <em>especial</em></h1><p class="cover-copy">Cincuenta años. Una vida de recuerdos.<br>Y una noche para compartir contigo.</p>
+<button class="button primary" id="open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg>Abrir invitación</button><span class="duration">Una historia de 30 segundos</span>
+</div></section>
+<section class="scene prologue" id="prologue" aria-labelledby="prologue-title" aria-hidden="true" inert><div class="scene-content">
+<div class="star reveal" aria-hidden="true">✧</div><p class="handwriting reveal" style="--delay:.2s">La vida se celebra</p>
+<h2 id="prologue-title" class="poem"><span class="line"><span style="--delay:.6s">con quienes la hacen</span></span><span class="line"><em style="--delay:1.2s">inolvidable.</em></span></h2><div class="gold-line reveal" style="--delay:1.8s"></div><p class="reveal" style="--delay:2s">Y tú eres parte de mi historia.</p>
+</div></section>
+<section class="scene birthday" id="birthday" aria-labelledby="birthday-title" aria-hidden="true" inert><div class="scene-content birthday-content">
+<div class="portrait-composition reveal" style="--delay:.15s"><div class="portrait-arch"><img id="yovanaPortrait" alt="Yovana Rimachi Jimenez" width="320" height="418"><div class="portrait-shade"></div></div><span class="portrait-script" aria-hidden="true">Mi historia continúa</span></div>
+<div class="birthday-copy"><p class="handwriting reveal" style="--delay:.4s">Celebra conmigo</p><h2 id="birthday-title" class="name" data-letters="Yovana">Yovana</h2><p class="surname reveal" style="--delay:1.4s">Rimachi Jimenez</p><div class="anniversary reveal" style="--delay:1.9s"><span class="fifty">50</span><span class="years">años</span></div><p class="reveal birthday-note" style="--delay:2.4s">De amor, de sueños<br>y de momentos compartidos.</p></div>
+</div></section>
+<section class="scene date-scene" id="date" aria-labelledby="date-title" aria-hidden="true" inert><div class="scene-content">
+<p class="handwriting reveal">Guarda esta fecha</p><div class="date-composition"><span class="date-side reveal" style="--delay:.5s">Sábado</span><h2 id="date-title" class="date-number reveal" style="--delay:.2s">07</h2><span class="date-side reveal" style="--delay:.8s">2026</span></div><p class="month reveal" style="--delay:1s">de noviembre</p><div class="gold-line reveal" style="--delay:1.3s"></div><p class="time reveal" style="--delay:1.6s">7:30 <span>p. m.</span></p><p class="reveal" style="--delay:2s">El comienzo de una noche inolvidable.</p>
+</div></section>
+<section class="scene venue-scene" id="venue" aria-labelledby="venue-title" aria-hidden="true" inert><div class="venue-image" aria-hidden="true"></div><div class="scene-content">
+<svg class="location-mark reveal" viewBox="0 0 48 60" aria-hidden="true"><path d="M24 56S5 34 5 23a19 19 0 0 1 38 0c0 11-19 33-19 33Z"/><circle cx="24" cy="23" r="7"/></svg><p class="handwriting reveal" style="--delay:.2s">Nos encontramos en</p><h2 id="venue-title" class="venue-name"><span class="line"><span style="--delay:.5s">Espejo</span></span><span class="line"><em style="--delay:.9s">Luna</em></span></h2><div class="gold-line reveal" style="--delay:1.4s"></div><p class="address reveal" style="--delay:1.7s">Av. Gran Chimú 654<br><span>2.º nivel · Lima</span></p>
+</div></section>
+<section class="scene dress-scene" id="dress" aria-labelledby="dress-title" aria-hidden="true" inert><div class="scene-content">
+<p class="handwriting reveal">Para esta ocasión</p><div class="dress-illustration reveal" style="--delay:.35s" aria-hidden="true"><svg viewBox="0 0 120 100"><path d="M12 41c8-7 12-20 17-29 8 6 10 17 19 27l23 23c10 8 25 7 35 14 4 3 5 8 3 12H59c-5-15-15-26-29-32v32H19V52Z"/><path d="m33 18 9 5M20 54l10 2M60 83h44"/></svg><span></span><svg viewBox="0 0 70 110"><path d="m25 10 20 0 4 12-10 12 10 54-14 13-14-13 10-54-10-12Z"/><path d="M31 34h8M26 14l16 13M30 46l11 10M27 63l17 14"/></svg></div><h2 id="dress-title" class="dress-title reveal" style="--delay:.8s">Vestimenta<br><em>elegante</em></h2><div class="gold-line reveal" style="--delay:1.2s"></div><p class="reveal" style="--delay:1.6s">Tu mejor estilo.<br>Y todas las ganas de celebrar.</p>
+</div></section>
+<section class="scene finale" id="finale" aria-labelledby="finale-title" aria-hidden="true" inert><div class="scene-content finale-content">
+<p class="handwriting reveal">El mejor regalo es tenerte cerca</p><h2 id="finale-title" class="reveal" style="--delay:.15s">Te espero</h2><p class="finale-name reveal" style="--delay:.25s">Yovana Rimachi Jimenez · 50 años</p><div class="final-details reveal" style="--delay:.35s"><p><strong>Sábado 7 de noviembre</strong><span>2026 · 7:30 p. m.</span></p><p><strong>Espejo Luna</strong><span>Av. Gran Chimú 654 · 2.º nivel</span></p><p class="final-dress">Vestimenta elegante</p></div><div class="actions reveal" style="--delay:.45s"><a class="button primary" href="https://wa.me/51992226504?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20los%2050%20a%C3%B1os%20de%20Yovana%20Rimachi%20Jimenez.%20Mi%20nombre%20es%3A%20" target="_blank" rel="noopener noreferrer">Confirmar asistencia<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></a><a class="button secondary" href="https://maps.app.goo.gl/vcutVFqzYCKzsUWMA" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22S4 13 4 9a8 8 0 0 1 16 0c0 4-8 13-8 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>Ver mapa</a></div><p class="whatsapp-note reveal" style="--delay:.6s">La confirmación se envía por WhatsApp.</p><button class="text-button replay" id="replay">Volver a ver la invitación</button>
+</div></section>
+</main>
+<footer class="player" id="player" hidden><div class="timeline" id="timeline" aria-label="Escenas de la invitación"></div><div class="player-bottom"><button class="player-arrow" id="previous" aria-label="Escena anterior">‹</button><span id="chapter" aria-live="polite">La invitación</span><div class="playback"><button id="pause" class="text-button" aria-label="Pausar invitación">Pausar</button><button class="player-arrow" id="next" aria-label="Escena siguiente">›</button></div></div></footer>
+<noscript><div class="noscript"><h1>Yovana · 50 años</h1><p>Sábado 7 de noviembre de 2026 · 7:30 p. m.<br>Espejo Luna · Av. Gran Chimú 654, 2.º nivel<br>Vestimenta elegante</p><a href="https://wa.me/51992226504">Confirmar por WhatsApp</a><a href="https://maps.app.goo.gl/vcutVFqzYCKzsUWMA">Ver mapa</a></div></noscript>
+</div></body></html>
