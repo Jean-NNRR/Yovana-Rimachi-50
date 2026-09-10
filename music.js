@@ -55,22 +55,38 @@
     .portrait-script{font-size:56px!important}
     .seal span{font-size:34px!important}
 
-    .side-lights{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:8;mix-blend-mode:screen}
-    .side-light{position:absolute;top:-12vh;width:22vw;height:125vh;filter:blur(8px);opacity:.46;transform-origin:50% 0;will-change:transform,opacity}
-    .side-light::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,235,178,.45) 0%,rgba(111,183,255,.23) 30%,rgba(34,106,191,.12) 58%,transparent 88%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(10px)}
-    .side-light.left{left:-7vw;animation:sweepLeft 8s ease-in-out infinite alternate}
-    .side-light.right{right:-7vw;animation:sweepRight 9.5s ease-in-out infinite alternate}
-    .side-light.left.second{left:3vw;opacity:.24;animation-duration:11s;animation-delay:-4s}
-    .side-light.right.second{right:3vw;opacity:.22;animation-duration:12.5s;animation-delay:-6s}
-    .edge-glow{position:absolute;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,rgba(255,221,139,.85),rgba(112,179,255,.55),transparent);filter:blur(3px);opacity:.7;animation:edgePulse 4.8s ease-in-out infinite}
-    .edge-glow.left{left:0}.edge-glow.right{right:0;animation-delay:-2.3s}
-    .light-orb{position:absolute;width:14px;height:14px;border-radius:50%;background:#ffe2a0;box-shadow:0 0 18px #ffd26f,0 0 42px rgba(120,190,255,.75);opacity:0;animation:orbFloat 7s linear infinite}
-    .light-orb.o1{left:4%;top:68%;animation-delay:-1s}.light-orb.o2{right:5%;top:38%;animation-delay:-3.2s}.light-orb.o3{left:8%;top:28%;animation-delay:-5.1s}.light-orb.o4{right:8%;top:76%;animation-delay:-6.2s}
-    @keyframes sweepLeft{0%{transform:rotate(12deg) translateX(-4vw) scaleX(.7);opacity:.22}45%{opacity:.58}100%{transform:rotate(-7deg) translateX(8vw) scaleX(1.2);opacity:.42}}
-    @keyframes sweepRight{0%{transform:rotate(-12deg) translateX(4vw) scaleX(.72);opacity:.2}50%{opacity:.55}100%{transform:rotate(8deg) translateX(-8vw) scaleX(1.18);opacity:.4}}
-    @keyframes edgePulse{0%,100%{opacity:.28;transform:scaleY(.82)}50%{opacity:.82;transform:scaleY(1.04)}}
-    @keyframes orbFloat{0%{transform:translateY(18vh) scale(.55);opacity:0}15%{opacity:.75}55%{opacity:.55}100%{transform:translateY(-42vh) scale(1.15);opacity:0}}
-    @media(prefers-reduced-motion:reduce){.side-light,.edge-glow,.light-orb{animation:none!important}.side-light{opacity:.22!important}.light-orb{display:none}}
+    .spotlight-stage{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:7;mix-blend-mode:screen}
+    .spotlight{position:absolute;width:72vw;height:115vh;top:-8vh;opacity:.72;filter:blur(4px);will-change:transform,opacity;transform-origin:50% 0}
+    .spotlight::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,247,211,.95) 0%,rgba(255,222,143,.70) 16%,rgba(139,202,255,.36) 45%,rgba(59,128,226,.18) 68%,transparent 92%);clip-path:polygon(47% 0,53% 0,100% 100%,0 100%)}
+    .spotlight.left-a{left:-38vw;animation:flashSweepLeft 5.8s ease-in-out infinite}
+    .spotlight.left-b{left:-26vw;opacity:.48;animation:flashSweepLeft2 7.6s ease-in-out infinite -2.4s}
+    .spotlight.right-a{right:-38vw;animation:flashSweepRight 6.4s ease-in-out infinite -1.2s}
+    .spotlight.right-b{right:-26vw;opacity:.46;animation:flashSweepRight2 8.3s ease-in-out infinite -4s}
+    .flash-burst{position:absolute;width:34vw;height:34vw;border-radius:50%;background:radial-gradient(circle,rgba(255,248,220,.95) 0%,rgba(255,215,119,.48) 18%,rgba(110,186,255,.22) 44%,transparent 70%);filter:blur(6px);opacity:0;animation:burst 4.8s ease-in-out infinite}
+    .flash-burst.left{left:-12vw;top:18vh}.flash-burst.right{right:-12vw;top:54vh;animation-delay:-2.1s}
+    .edge-flash{position:absolute;top:0;bottom:0;width:12px;opacity:.8;filter:blur(4px);background:linear-gradient(180deg,transparent 0%,rgba(255,230,157,.15) 20%,rgba(255,238,189,.95) 50%,rgba(116,192,255,.55) 72%,transparent 100%);animation:edgeFlash 3.6s ease-in-out infinite}
+    .edge-flash.left{left:0}.edge-flash.right{right:0;animation-delay:-1.8s}
+    @keyframes flashSweepLeft{0%,100%{transform:rotate(24deg) translateX(-12vw);opacity:.18}22%{opacity:.95}45%{transform:rotate(-4deg) translateX(25vw);opacity:.72}62%{opacity:.24}}
+    @keyframes flashSweepLeft2{0%,100%{transform:rotate(8deg) translateX(-16vw);opacity:.10}38%{transform:rotate(-18deg) translateX(30vw);opacity:.72}52%{opacity:.30}}
+    @keyframes flashSweepRight{0%,100%{transform:rotate(-24deg) translateX(12vw);opacity:.16}28%{opacity:.92}50%{transform:rotate(5deg) translateX(-26vw);opacity:.75}72%{opacity:.22}}
+    @keyframes flashSweepRight2{0%,100%{transform:rotate(-8deg) translateX(16vw);opacity:.10}35%{transform:rotate(18deg) translateX(-30vw);opacity:.70}58%{opacity:.26}}
+    @keyframes burst{0%,100%{opacity:0;transform:scale(.55)}20%{opacity:.18}24%{opacity:.98;transform:scale(1.12)}31%{opacity:.12;transform:scale(.86)}52%{opacity:0}}
+    @keyframes edgeFlash{0%,100%{opacity:.20}42%{opacity:.35}48%{opacity:1}56%{opacity:.28}}
+
+    .god-intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:32px;background:radial-gradient(circle at 50% 36%,rgba(26,77,132,.97),rgba(7,26,51,.995) 58%,#041327 100%);overflow:hidden;text-align:center;color:#fff7ea}
+    .god-intro::before,.god-intro::after{content:'';position:absolute;width:66vw;height:120vh;top:-15vh;background:linear-gradient(180deg,rgba(255,244,202,.85),rgba(215,184,119,.28) 35%,rgba(91,166,255,.14) 63%,transparent 88%);clip-path:polygon(48% 0,52% 0,100% 100%,0 100%);filter:blur(8px);opacity:.58;animation:introSweep 6s ease-in-out infinite alternate;pointer-events:none}
+    .god-intro::before{left:-30vw;transform:rotate(17deg)}
+    .god-intro::after{right:-30vw;transform:rotate(-17deg);animation-delay:-3s}
+    .god-card{position:relative;z-index:2;width:min(760px,92vw);padding:28px 18px}
+    .god-cross{font-size:56px;line-height:1;color:#d7b877;text-shadow:0 0 24px rgba(215,184,119,.55);margin-bottom:14px}
+    .god-kicker{font-size:34px;color:#d7b877;margin-bottom:10px}
+    .god-title{font-size:clamp(64px,12vw,106px);line-height:.95;margin:0 0 20px;color:#fff7ea;text-shadow:0 4px 22px rgba(0,0,0,.28)}
+    .god-copy{font-size:clamp(30px,5.7vw,46px);line-height:1.28;max-width:680px;margin:0 auto 28px;color:#fff8e8}
+    .god-enter{border:1px solid rgba(215,184,119,.75);background:rgba(12,45,82,.74);color:#f8e2ae;border-radius:999px;padding:12px 26px;font-size:32px;box-shadow:0 0 30px rgba(215,184,119,.14);backdrop-filter:blur(8px)}
+    .god-enter:active{transform:scale(.98)}
+    .god-intro.hide{animation:introOut .8s ease forwards;pointer-events:none}
+    @keyframes introSweep{from{opacity:.28;transform:rotate(14deg) translateX(-4vw)}to{opacity:.7;transform:rotate(-6deg) translateX(10vw)}}
+    @keyframes introOut{to{opacity:0;visibility:hidden;transform:scale(1.025)}}
 
     @media(max-width:650px){
       .signature{font-size:66px!important}
@@ -103,28 +119,48 @@
       .letter b{font-size:46px!important}
       .portrait-script{font-size:46px!important}
       .seal span{font-size:30px!important}
-      .side-light{width:38vw;filter:blur(6px);opacity:.38}
-      .side-light.left{left:-18vw}.side-light.right{right:-18vw}
-      .side-light.left.second{left:-2vw}.side-light.right.second{right:-2vw}
+      .spotlight{width:105vw;height:120vh;filter:blur(3px)}
+      .spotlight.left-a{left:-72vw}.spotlight.left-b{left:-58vw}.spotlight.right-a{right:-72vw}.spotlight.right-b{right:-58vw}
+      .flash-burst{width:62vw;height:62vw}
+      .god-intro{padding:22px}
+      .god-cross{font-size:46px}
+      .god-kicker{font-size:29px}
+      .god-copy{font-size:clamp(28px,7.4vw,38px)}
+      .god-enter{font-size:29px}
     }
   `;
   document.head.append(theme);
 
-  const lights = document.createElement('div');
-  lights.className = 'side-lights';
-  lights.setAttribute('aria-hidden','true');
-  lights.innerHTML = `
-    <span class="side-light left"></span>
-    <span class="side-light left second"></span>
-    <span class="side-light right"></span>
-    <span class="side-light right second"></span>
-    <span class="edge-glow left"></span>
-    <span class="edge-glow right"></span>
-    <span class="light-orb o1"></span>
-    <span class="light-orb o2"></span>
-    <span class="light-orb o3"></span>
-    <span class="light-orb o4"></span>`;
-  document.body.append(lights);
+  const spotlights = document.createElement('div');
+  spotlights.className = 'spotlight-stage';
+  spotlights.setAttribute('aria-hidden','true');
+  spotlights.innerHTML = `
+    <span class="spotlight left-a"></span>
+    <span class="spotlight left-b"></span>
+    <span class="spotlight right-a"></span>
+    <span class="spotlight right-b"></span>
+    <span class="flash-burst left"></span>
+    <span class="flash-burst right"></span>
+    <span class="edge-flash left"></span>
+    <span class="edge-flash right"></span>`;
+  document.body.append(spotlights);
+
+  const intro = document.createElement('section');
+  intro.className = 'god-intro';
+  intro.setAttribute('aria-label','Agradecimiento a Dios');
+  intro.innerHTML = `
+    <div class="god-card">
+      <div class="god-cross">✦</div>
+      <div class="god-kicker">Con gratitud</div>
+      <h1 class="god-title">Gracias, Dios</h1>
+      <p class="god-copy">Por el regalo de la vida, por cada bendición, por mi familia y por permitirme llegar a mis 50 años rodeada de amor.</p>
+      <button class="god-enter" type="button">Continuar a la invitación</button>
+    </div>`;
+  document.body.append(intro);
+  intro.querySelector('.god-enter').addEventListener('click', () => {
+    intro.classList.add('hide');
+    setTimeout(() => intro.remove(), 900);
+  });
 
   const button = document.getElementById('music');
   const audio = document.createElement('audio');
