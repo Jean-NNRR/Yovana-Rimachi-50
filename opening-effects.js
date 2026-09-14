@@ -49,7 +49,7 @@
   const particles = [];
   let running = true;
   const start = performance.now();
-  const palette = ['#fff7da','#f5d785','#d9b768','#9fd0ff','#dfefff'];
+  const palette = ['#fff7da','#f5d785','#d9b768','#f2c766','#b88938'];
 
   function resize(){
     dpr = Math.min(window.devicePixelRatio || 1, 2);
